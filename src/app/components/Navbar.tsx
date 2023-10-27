@@ -3,17 +3,32 @@ import { css } from '@emotion/react'
 import Image from 'next/image';
 import Link from 'next/link';
 import wafLogo from '/src/images/waf_logo.png';
+
 /** @jsxImportSource @emotion/react */
+
+
+const breakpoints = [375, 768, 1024, 2560]
+
+const mq = breakpoints.map(bp => `@media (min-width: ${bp}px)`)
+
 
 const navbarCss = {
   nav: css({
     display: 'flex',
     alignItems: 'baseline',
-    background: 'transparent' 
+    background: 'transparent',
+    [mq[0]]: {
+      justifyContent: 'space-between',
+    },
   }),
   ulDiv: css({
-    display: 'flex',
-    justifyContent: 'space-between'
+    [mq[0]]: {
+      display: 'none',
+    },
+    [mq[2]]: {
+      display: 'flex',
+      justifyContent: 'space-between',
+    },
   }),
   ul: css({
     display: 'flex',
@@ -55,6 +70,14 @@ export default function Navbar() {
                height={70}
                alt="waf_logo" />
       </div> 
+      <div css={{  
+          [mq[2]]: {
+             display: 'none',
+          },
+    }}>
+        <svg fill="#000000" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" stroke="#000000"><g id="SVGRepo_bgCarrier" strokeWidth="3"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+        <g id="SVGRepo_iconCarrier"> <path d="M1920 1468.412v112.94H0v-112.94h1920Zm0-564.706v112.941H0V903.706h1920ZM1920 339v112.941H0V339h1920Z" fillRule="evenodd"></path> </g></svg>
+      </div>
       <div css={ navbarCss.ulDiv }>
       <div>
         <ul css={ navbarCss.ul }>
