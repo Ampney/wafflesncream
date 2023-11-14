@@ -2,69 +2,140 @@
 import Image from 'next/image'
 import wafStore from '/src/images/waf_flagshipstore.webp'
 import { css } from '@emotion/react'
+import { Grid } from 'swiper/modules'
+
+
+const breakpoints = [360, 768, 1024, 2560]
+const mq = breakpoints.map(bp => `@media (min-width: ${bp}px)`)
 
 /** @jsxImportSource @emotion/react */
 
 const footerCss = {
   container: css({
-    display: 'grid',
-    gridAutoFlow: 'column',
-    gridTemplateColumns: 'repeat(2, minmax(150px, 1fr))',
-    paddingBlock: '2rem',
-    backgroundColor: '#212121'
+    [mq[0]]: {
+     textAlign: 'left',
+     paddingInline: '1rem',
+    },
+    [mq[2]]: {
+      display: 'grid',
+      gridAutoFlow: 'column',
+      gridTemplateColumns: 'repeat(2, minmax(150px, 1fr))',
+      paddingBlock: '2rem',
+      backgroundColor: '#212121'
+    }
   }),
+
   h5: css({
-    fontSize: '2rem',
-    textTransform: 'uppercase',
-    fontWeight: 'lighter',
-    textAlign: 'left',
-    color: '#fff'
+    [mq[0]]: {
+      textTransform: 'uppercase',
+      fontWeight: 'bold',
+      fontSize: '1.5rem',
+      color: '#000'
+    },
+    [mq[2]]: {
+      textAlign: 'left',
+      color: '#fff'
+    },
+    [mq[3]]: {
+      fontSize: '2rem',
+     },
   }),
+ 
   details: css({
-    display: 'flex',
-    justifyContent: 'center',
-    marginBlock: 'auto',
+    [mq[0]]: {
+     marginBlock: '2rem',
+    },
+    [mq[2]]: {     
+      display: 'flex',
+      justifyContent: 'center',
+      marginBlock: 'auto',
+    },
   }),
+
   boxing: css({
-    padding: '0.5rem',
-    marginInline: '2rem'
+    [mq[2]]: {   
+      padding: '0.5rem',
+      marginInline: '2rem'
+    },
   }),
+
+  
   p: css({
-    fontSize: '2rem',
-    textAlign: 'left',
-    color: '#fff'
+    [mq[0]]: {
+     fontSize: '1.5rem',
+    },
+    [mq[2]]: {
+      textAlign: 'left',
+      color: '#fff'
+    },
+    [mq[3]]: {
+      fontSize: '2rem',
+     },
   }),
+
   socials: css({
-    gridColumn: '1 / 3',
-    gridRow: '2 / 3',
-    justifyItems: 'center',
-    paddingTop: '2rem'
+    [mq[0]]: {
+     
+    },
+    [mq[2]]: {
+      marginInline: 'auto',
+      gridColumn: '1 / 3',
+      gridRow: '2 / 3',
+      justifyItems: 'center',
+      paddingTop: '2rem'
+    },
   }),
+
   terms: css({
-    color: '#fff',
-    marginBlock: '3rem',
-    span: css({
-      paddingInline: '2rem',
+    [mq[0]]: {
+     span: css({
+      display: 'block',
+      a: css({
+        fontSize: '1.5rem',
+      }),
+    }),
+    },
+    [mq[2]]: {
+      display: 'flex',
+      color: '#fff',
+      marginBlock: '3rem',
+      span: css({
+        paddingInline: '1.5rem',
+      })
+    },
+    [mq[3]]: {
       a: css({
         fontSize: '2rem',
       }),
-    })
+     },
   }),
+
   svgContainer: css({
-    display: 'flex',
-    justifyContent: 'center',
-    textAlign: 'center'
+    [mq[0]]: {
+     display: 'flex',
+    //  background: '#aaa',
+     justifyContent: 'center',
+    },
+    [mq[2]]: {
+      textAlign: 'center'
+    },
   }),
+
   cls: css({
-    fill: 'none',
-    stroke: '#fff',
-    strokeLinecap: 'round',
-    strokeLinejoin: 'round'
+    [mq[0]]: {
+      fill: 'none',
+      stroke: '#fff',
+      strokeLinecap: 'round',
+      strokeLinejoin: 'round'
+    },
   }),
+
   svg: css({
-    height: '3rem',
-    width: '3rem',
-    marginInline: '1rem'
+    [mq[0]]: {
+      height: '3rem',
+      width: '3rem',
+      marginInline: '1rem'
+    },
   })
 }
 export default function Footer(){
@@ -74,6 +145,11 @@ export default function Footer(){
     <div>
       <Image 
           src={wafStore}
+          sizes="100vw"
+          style={{
+            width: '100%',
+            height: 'auto'
+          }}
           alt='store'  />
     </div>
     <div css={footerCss.details}>
@@ -148,9 +224,17 @@ export default function Footer(){
           </a>
         </div>
       </div>
-      <div css={{marginInline: 'auto'}}>
-      <p css={{textAlign: 'center', textTransform: 'uppercase', fontSize: '2rem', color: '#fff'}}>follow us </p>
-      <blockquote css={{color: '#fff', marginTop: '2rem'}}>&copy;2023 Wafflesncream</blockquote>
+      <div css={{
+           [mq[0]]: {  marginInline: 'auto',textAlign: 'center'      },
+          }}>
+      <p css={{
+        [mq[0]]: {  textAlign: 'center',textTransform: 'uppercase', fontSize: '2rem', color: '#000'      },
+        [mq[2]]: {  marginInline: 'auto',color: '#fff'     },
+        }}>follow us </p>
+      <blockquote css={{
+           [mq[0]]: {  color: '#000'   },
+           [mq[2]]: {  color: '#fff', marginTop: '2rem'    },
+           }}>&copy;2023 Wafflesncream</blockquote>
       </div>
         </div>
    </footer>

@@ -7,20 +7,25 @@ import wafLogo from '/src/images/waf_logo.png';
 /** @jsxImportSource @emotion/react */
 
 
-const breakpoints = [375, 768, 1024, 2560]
-
+const breakpoints = [360, 768, 1024, 1440]
 const mq = breakpoints.map(bp => `@media (min-width: ${bp}px)`)
 
 
 const navbarCss = {
   nav: css({
-    display: 'flex',
-    alignItems: 'baseline',
-    background: 'transparent',
     [mq[0]]: {
+      display: 'flex',
       justifyContent: 'space-between',
+      marginInline: '2rem',
+      alignItems: 'center',
+      marginTop: '1rem',
+    },
+     [mq[2]]: {
+      alignItems: 'baseline',
+      background: 'transparent',
     },
   }),
+
   ulDiv: css({
     [mq[0]]: {
       display: 'none',
@@ -30,31 +35,61 @@ const navbarCss = {
       justifyContent: 'space-between',
     },
   }),
+
   ul: css({
-    display: 'flex',
-    paddingBlock: '0.5rem',
-    listStyleType: 'none',
-    marginInline: '5rem',  
-  }),
-  lis: css({
-    fontSize: '2rem',
-    marginInline: '1rem',
-  }),
-  a: css({
-    fontSize: '1.5rem',
-     '&:hover': {
-        backgroundColor: '#e7dcc8',
-        borderBottom: '0.3rem solid #000',
+    [mq[2]]: {
+      display: 'flex',
+      paddingBlock: '0.5rem',
+      listStyleType: 'none',
+      marginInline: '2rem', 
+    },
+    [mq[3]]: {
+      display: 'flex',
+      paddingBlock: '0.5rem',
+      listStyleType: 'none',
+      marginInline: '5rem', 
     }
   }),
-  svgDiv: css({
-    display: 'flex', 
-    marginLeft: '45rem'  
+
+  lis: css({
+    [mq[2]]: {
+     marginInline: '0.5rem',
+    },
   }),
+
+  a: css({
+    [mq[2]]: {
+      fontSize: '1.3rem',
+      '&:hover': {
+         backgroundColor: '#e7dcc8',
+         borderBottom: '0.3rem solid #000',     }
+    },
+    [mq[3]]: {
+      fontSize: '1.5rem',
+    },
+  }),
+
+  svgDiv: css({
+    [mq[2]]: {
+      display: 'flex', 
+      marginLeft: '30rem' 
+     },
+    [mq[3]]: {
+      marginLeft: '55rem' 
+     },
+  }),
+
   svg: css({
-    height: '3rem',
-    width: '3rem',
-    marginInline: '1rem'
+    [mq[2]]: {
+      height: '2rem',
+      width: '2rem',
+      marginInline: '1rem'
+    },
+    [mq[3]]: {
+      height: '3rem',
+      width: '3rem',
+      marginInline: '1rem'
+    },
   })
 }
 
@@ -66,8 +101,11 @@ export default function Navbar() {
       <div>
         <Image
                src={wafLogo}
-               width={150}
-               height={70}
+               sizes="10vw"
+               style={{
+                 width: '100%',
+                 height: 'auto',
+               }}
                alt="waf_logo" />
       </div> 
       <div css={{  
@@ -75,7 +113,7 @@ export default function Navbar() {
              display: 'none',
           },
     }}>
-        <svg fill="#000000" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" stroke="#000000"><g id="SVGRepo_bgCarrier" strokeWidth="3"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+        <svg fill="#000000" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg" width="75%" height="2rem" stroke="#000000"><g id="SVGRepo_bgCarrier" strokeWidth="3"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
         <g id="SVGRepo_iconCarrier"> <path d="M1920 1468.412v112.94H0v-112.94h1920Zm0-564.706v112.941H0V903.706h1920ZM1920 339v112.941H0V339h1920Z" fillRule="evenodd"></path> </g></svg>
       </div>
       <div css={ navbarCss.ulDiv }>
